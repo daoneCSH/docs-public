@@ -1,0 +1,88 @@
+site_name: DADP Documentation
+site_description: DADP official documentation
+site_url: https://docs.dadp.co.kr
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Overview: getting-started/index.md
+      - Platform Overview: getting-started/platform-overview.md
+      - Core Concepts: getting-started/core-concepts.md
+  - Installation:
+      - Overview: installation/index.md
+      - System Requirements: installation/system-requirements.md
+      - Server Installation: installation/server-installation.md
+      - Engine Installation: installation/engine-installation.md
+      - Wrapper Installation: installation/wrapper-installation.md
+      - DB UDF Installation: installation/db-udf-installation.md
+  - Deployment:
+      - Overview: deployment/index.md
+      - Deployment Overview: deployment/deployment-overview.md
+      - Network and TLS: deployment/network-and-tls.md
+      - Connected and Air-Gapped Modes: deployment/connected-and-air-gapped.md
+  - Operations:
+      - Overview: operations/index.md
+      - Operations Overview: operations/operations-overview.md
+      - Hub Operations: operations/hub-operations.md
+      - Engine Operations: operations/engine-operations.md
+      - Recovery Guide: operations/recovery-guide.md
+  - Configuration:
+      - Overview: configuration/index.md
+      - Configuration Overview: configuration/configuration-overview.md
+      - Hub Configuration: configuration/hub-configuration.md
+      - Engine Configuration: configuration/engine-configuration.md
+      - Wrapper Configuration: configuration/wrapper-configuration.md
+  - Architecture:
+      - Overview: architecture/index.md
+      - Platform Architecture: architecture/platform-architecture.md
+      - Control Plane and Data Plane: architecture/control-plane-and-data-plane.md
+      - Service Communication: architecture/service-communication.md
+  - Integrations:
+      - Overview: integrations/index.md
+      - Integration Overview: integrations/integration-overview.md
+      - Wrapper Integration: integrations/wrapper-integration.md
+      - Direct API Integration: integrations/direct-api-integration.md
+      - DB UDF Integration: integrations/db-udf-integration.md
+  - Modules:
+      - Overview: modules/index.md
+      - Module Overview: modules/module-overview.md
+      - Hub: modules/hub.md
+      - Engine: modules/engine.md
+      - Wrapper: modules/wrapper.md
+      - DB UDF: modules/db-udf.md
+  - API:
+      - Overview: api/index.md
+      - API Overview: api/api-overview.md
+      - Hub API: api/hub-api.md
+      - Engine API: api/engine-api.md
+  - Security:
+      - Overview: security/index.md
+      - Security Overview: security/security-overview.md
+      - Authentication and Access Control: security/authentication-and-access-control.md
+      - Trust and Certificates: security/trust-and-certificates.md
+      - Connected and Air-Gapped Authentication: security/connected-and-air-gapped-authentication.md
+  - Troubleshooting:
+      - Overview: troubleshooting/index.md
+      - Troubleshooting Overview: troubleshooting/troubleshooting-overview.md
+      - Installation and Connectivity Issues: troubleshooting/installation-and-connectivity.md
+      - Policy Sync and Runtime Issues: troubleshooting/policy-sync-and-runtime.md
+      - License and Trust Issues: troubleshooting/license-and-trust.md
+  - Release Notes:
+      - Overview: release-notes/index.md
+      - Release Notes Overview: release-notes/overview.md
+  - Glossary:
+      - Overview: glossary/index.md
+      - Terms: glossary/terms.md
