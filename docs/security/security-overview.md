@@ -1,23 +1,31 @@
 # Security Overview
 
-DADP security is organized into distinct layers instead of a single blended model. User authentication, authorization, and service trust are documented separately because they operate at different boundaries.
+DADP 보안 문서는 인증, 권한, 서비스 신뢰를 하나의 모델로 섞지 않고 경계별로 분리한다. 운영자가 실제로 다루는 실패 유형도 이 경계에 따라 달라지기 때문이다.
 
-## Security Layers
+## 보안 경계
 
-| Layer | Primary Subject | Purpose |
-|-------|-----------------|---------|
-| User Authentication | browser user or API user | verify identity and establish sessions |
-| Authorization | Hub role model | enforce feature access |
-| Service Trust | service instances | establish service-to-service trust |
+| 보안 경계 | 주체 | 목적 | 대표적인 운영 질문 |
+|-----------|------|------|--------------------|
+| 사용자 인증 | 브라우저 사용자, 운영 API 사용자 | 신원 확인과 세션 성립 | 누가 Hub에 접근하는가 |
+| 권한 부여 | Hub 역할 모델 | 기능별 접근 제어 | 인증된 사용자가 무엇을 할 수 있는가 |
+| 서비스 신뢰 | Hub, Engine, 연동 컴포넌트 | 서비스 간 신뢰 성립 | 서비스 간 호출이 신뢰 가능한 채널에서 이루어지는가 |
 
-## Core Principles
+## 보안 설계 원칙
 
-1. User authentication and service authentication are separate concerns.
-2. Token validity and feature authorization are evaluated independently.
-3. Bootstrap recovery paths and normal operating paths are documented separately.
+1. 사용자 인증과 서비스 인증은 같은 문제로 다루지 않는다.
+2. 인증 성공과 권한 허용은 서로 다른 판정이다.
+3. 연결형 운영 경로와 복구 또는 에어갭 경로는 서로 다른 운영 규칙을 가진다.
+4. 제어면 접근 문제와 실행면 호출 문제는 동일한 장애 범주로 묶지 않는다.
 
-## Reading Guide
+## 운영상 의미
 
-- [Authentication and Access Control](authentication-and-access-control.md)
-- [Trust and Certificates](trust-and-certificates.md)
-- [Connected and Air-Gapped Authentication](connected-and-air-gapped-authentication.md)
+- 로그인 실패는 사용자 인증 문제로 먼저 본다.
+- 로그인은 되지만 기능 접근이 막히면 권한 모델을 본다.
+- 서비스 간 호출 실패, mTLS 실패, 신뢰 자산 불일치는 서비스 신뢰 문제로 본다.
+- 라이선스 검증과 연결형 상태 유지 문제는 일반 API 오류로 축소하지 않는다.
+
+## 읽는 순서
+
+1. [Authentication and Access Control](authentication-and-access-control.md)에서 사용자 인증과 권한 모델을 확인한다.
+2. [Trust and Certificates](trust-and-certificates.md)에서 서비스 간 신뢰와 인증서 운용을 확인한다.
+3. [Connected and Air-Gapped Authentication](connected-and-air-gapped-authentication.md)에서 운영 모드별 차이를 확인한다.

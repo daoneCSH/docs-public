@@ -1,23 +1,37 @@
 # Policy Sync and Runtime Issues
 
-Synchronization failures and runtime execution failures can look similar at the symptom layer, but they represent different operational causes.
+정책 동기화 문제와 런타임 실행 문제는 증상이 비슷하게 보일 수 있지만, 운영 원인은 다르다. 공개 문서에서는 두 문제를 함께 다루되 먼저 무엇이 오래된 상태인지, 무엇이 실제로 실행에 실패하는지 분리해서 본다.
 
-## Common Symptoms
+## 대표 증상
 
-- new policy is not reflected
-- one engine behaves differently from others
-- Wrapper uses outdated mapping information
-- encryption succeeds on one path but fails on another
+- 새 정책이 반영되지 않음
+- Engine 인스턴스마다 결과가 다름
+- Wrapper가 오래된 매핑 정보를 사용함
+- 한 경로에서는 성공하지만 다른 경로에서는 실패함
 
-## Diagnostic Questions
+## 진단 질문
 
-1. Was the policy source of truth actually updated in Hub?
-2. Is the Engine runtime cache current?
-3. Is the Wrapper local metadata current?
-4. Which path fails: Wrapper, Direct API, or DB UDF?
+1. Hub의 원본 상태가 실제로 갱신되었는가
+2. Engine 런타임 캐시가 최신 상태인가
+3. Wrapper 로컬 메타데이터 또는 스냅샷이 최신인가
+4. 실패가 Wrapper, Direct API, DB UDF 중 어느 경로에서 시작되는가
 
-## Operational Interpretation
+## 해석 원칙
 
-- Hub to Engine sync failure means runtime cache is stale.
-- Wrapper sync failure means local execution metadata is stale.
-- Engine runtime failure means the execution path itself is impaired.
+### Hub에서 Engine으로의 동기화 실패
+
+런타임 캐시가 오래된 상태라는 뜻이다. 제어면에서 정책 변경이 성공했더라도 실행면은 이전 버전을 계속 사용할 수 있다.
+
+### Wrapper 동기화 실패
+
+Wrapper가 오래된 로컬 메타데이터를 사용하고 있다는 뜻이다. 이 경우 Engine 자체는 정상이더라도 Wrapper 경로에서만 불일치가 나타날 수 있다.
+
+### Engine 실행 실패
+
+실행 경로 자체가 손상되었거나 요청 본문, 캐시 상태, 런타임 자원이 정상 조건을 만족하지 못하는 상태다. 이 경우 여러 연동 경로에서 동시에 증상이 나타날 수 있다.
+
+## 운영 원칙
+
+- 정책 반영 지연과 실행 실패를 같은 장애로 취급하지 않는다.
+- 특정 연동 경로만 실패하면 해당 경로의 메타데이터 또는 계약 문제를 먼저 본다.
+- 모든 경로에서 동시에 실패하면 Engine 실행면을 우선 본다.

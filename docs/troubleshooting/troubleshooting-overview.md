@@ -1,22 +1,27 @@
 # Troubleshooting Overview
 
-DADP troubleshooting is organized by operational failure boundary. Installation, connectivity, synchronization, runtime execution, and trust issues should not be handled as one undifferentiated problem class.
+DADP 장애 문서는 증상 이름이 아니라 운영 경계 기준으로 정리한다. 설치, 연결, 동기화, 실행, 신뢰 문제를 하나의 장애 범주로 묶으면 원인 판별이 늦어지고 복구 순서도 흔들리기 쉽다.
 
-## Problem Categories
+## 장애 범주
 
-| Category | Typical Scope |
-|----------|---------------|
-| Installation | startup failure, missing configuration, object creation failure |
-| Connectivity | network path, URL, TLS, ACL, DNS |
-| Synchronization | policy distribution and runtime state mismatch |
-| Runtime | encryption or decryption execution failure |
-| License and Trust | bootstrap, validation, certificate, and mTLS issues |
+| 범주 | 대표 증상 | 먼저 확인할 경계 |
+|------|-----------|------------------|
+| 설치 | 프로세스 기동 실패, 오브젝트 생성 실패, 초기 설정 누락 | 컴포넌트 자체 기동 경계 |
+| 연결 | URL, 포트, TLS, ACL, DNS 문제 | 네트워크와 진입 경계 |
+| 동기화 | 정책 반영 지연, 매핑 불일치, 캐시 불일치 | Hub-Engine 또는 연동 컴포넌트 동기화 경계 |
+| 실행 | 암복호화 실패, 배치 실패, 스트림 처리 실패 | Engine 실행 경계 |
+| 라이선스와 신뢰 | 검증 실패, 인증서 문제, mTLS 실패 | 서비스 신뢰와 운영 모드 경계 |
 
-## Diagnostic Rule
+## 기본 진단 순서
 
-When triaging an issue, identify which boundary fails first:
+1. 어느 경계에서 실패가 처음 시작되는지 식별한다.
+2. 같은 증상이 모든 경로에서 재현되는지, 특정 연동 경로에서만 재현되는지 분리한다.
+3. 제어면 원본 문제인지, 실행면 문제인지, 신뢰 경계 문제인지 구분한다.
+4. 복구 절차가 정상 운영 경로와 동일한지, 연결형 또는 에어갭 복구 절차가 필요한지 확인한다.
 
-1. control plane
-2. data plane
-3. integration path
-4. trust and licensing
+## 실무 적용 원칙
+
+- 정책 미반영과 암복호화 실패를 같은 문제로 취급하지 않는다.
+- 로그인 실패와 mTLS 실패를 같은 인증 문제로 묶지 않는다.
+- Wrapper 또는 DB UDF에서만 재현되는 증상은 연동 경계에서 먼저 본다.
+- 모든 경로에서 동시에 실패하면 Engine 또는 신뢰 경계를 먼저 본다.

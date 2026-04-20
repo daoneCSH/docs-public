@@ -1,25 +1,43 @@
 # Installation and Connectivity Issues
 
-Installation and connectivity issues indicate that a component has not yet reached a stable operating boundary.
+설치와 연결 문제는 컴포넌트가 아직 안정적인 운영 경계에 도달하지 못했음을 의미한다. 이 범주는 런타임 로직보다 기동, 주소, 포트, 라우팅, 네트워크 허용 상태를 먼저 확인해야 한다.
 
-## Common Symptoms
+## 대표 증상
 
-- service process does not start
-- required port does not respond
-- Wrapper cannot reach Hub
-- DB UDF cannot reach Engine
-- reverse proxy or load balancer does not route correctly
+- 서비스 프로세스가 기동하지 않음
+- 필수 포트가 응답하지 않음
+- Wrapper가 Hub에 도달하지 못함
+- DB UDF가 Engine에 도달하지 못함
+- 리버스 프록시 또는 로드 밸런서 경로가 기대대로 라우팅되지 않음
 
-## First Checks
+## 1차 점검 항목
 
-1. process or container state
-2. environment variables and secrets
-3. target URL and port
-4. network and firewall rules
-5. database-side ACL or outbound connectivity
+1. 프로세스 또는 컨테이너 상태
+2. 환경 변수와 시크릿 주입 상태
+3. 대상 URL, 포트, 경로 구성
+4. 네트워크, 방화벽, 보안 그룹, ACL
+5. 데이터베이스 측 아웃바운드 연결 또는 ACL 허용 상태
 
-## Typical Interpretation
+## 경계별 해석
 
-- Hub startup failures usually indicate control-plane configuration errors.
-- Engine reachability failures usually indicate URL, port, or TLS problems.
-- DB UDF path failures should be checked against engine endpoint, ACL, and database object state.
+### Hub 기동 실패
+
+보통 제어면 설정, 시크릿, 데이터 저장소 연결 같은 초기화 문제를 먼저 의심한다.
+
+### Engine 도달 실패
+
+보통 URL, 포트, TLS, 프록시, 라우팅 문제를 먼저 본다. 프로세스가 살아 있어도 외부 경계에서 도달하지 못하면 실행면은 사용할 수 없다.
+
+### Wrapper 연결 실패
+
+Hub 등록 상태와 별개로, 실제 애플리케이션 환경 변수, 로컬 네트워크 경로, 메타데이터 갱신 경로를 함께 봐야 한다.
+
+### DB UDF 연결 실패
+
+DB 오브젝트 설치 상태만으로 정상이라고 판단하지 않는다. Engine 엔드포인트, ACL, DB 벤더별 외부 호출 허용 상태를 함께 봐야 한다.
+
+## 운영 원칙
+
+- 기동 실패를 정책 문제로 오해하지 않는다.
+- 주소와 포트가 맞더라도 TLS와 프록시 구성이 다르면 실패할 수 있다.
+- 특정 경계에서만 연결이 끊기면 전역 장애보다 해당 연동 경계 문제일 가능성이 높다.

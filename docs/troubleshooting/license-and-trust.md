@@ -1,24 +1,25 @@
 # License and Trust Issues
 
-License and trust problems should be treated as operating-state failures rather than as generic API errors. This category includes validation, bootstrap recovery, certificate alignment, and service trust failures.
+라이선스와 신뢰 문제는 일반 API 오류가 아니라 운영 상태 실패로 다뤄야 한다. 이 범주에는 검증, 부트스트랩 복구, 인증서 정합성, 서비스 간 신뢰 채널 문제가 함께 포함된다.
 
-## Common Symptoms
+## 대표 증상
 
-- license validation fails
-- validation succeeds but status remains disconnected
-- mTLS channel fails after certificate change
-- connected operation falls back to bootstrap recovery
+- 라이선스 검증 실패
+- 검증은 성공했지만 상태가 계속 disconnected 로 남음
+- 인증서 변경 이후 mTLS 채널 실패
+- 연결형 운영 경로가 복구 경로로 되돌아감
 
-## First Checks
+## 1차 점검 항목
 
-1. connected-mode validation response
-2. license or trust status channel state
-3. bootstrap path availability
-4. certificate and truststore alignment
-5. connected or air-gapped operating mode
+1. 연결형 검증 응답과 상태 채널
+2. 라이선스 또는 신뢰 상태가 갱신되는지 여부
+3. 부트스트랩 또는 복구 경로의 가용성
+4. 인증서, 신뢰 저장소, 상대 서비스 설정의 정합성
+5. 현재 운영 모드가 연결형인지 에어갭인지
 
-## Operational Interpretation
+## 해석 원칙
 
-- Validation success does not guarantee a stable connected state.
-- mTLS failure should be interpreted as a service trust problem.
-- Air-gapped recovery follows a different operational rule set from connected recovery.
+- 검증 성공이 곧 안정적인 연결형 운영 상태를 보장하지는 않는다.
+- mTLS 실패는 단순 네트워크 오류가 아니라 서비스 신뢰 문제로 해석해야 한다.
+- 에어갭 복구 절차는 연결형 복구 절차와 다른 운영 규칙을 따른다.
+- 인증서 교체 이후 발생한 문제는 상대 서비스의 신뢰 자산 정합성을 함께 봐야 한다.
