@@ -63,6 +63,12 @@ nav:
       - Engine: modules/engine.md
       - Wrapper: modules/wrapper.md
       - DB UDF: modules/db-udf.md
+  - Operational Tools:
+      - Overview: operational-tools/index.md
+      - Tools Overview: operational-tools/tools-overview.md
+      - Hub CLI: operational-tools/hub-cli.md
+      - Schema Collector: operational-tools/schema-collector.md
+      - Configuration and Sync Workflows: operational-tools/configuration-and-sync.md
   - API:
       - Overview: api/index.md
       - API Overview: api/api-overview.md
