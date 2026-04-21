@@ -24,6 +24,7 @@ nav:
   - Installation:
       - Overview: installation/index.md
       - System Requirements: installation/system-requirements.md
+      - Container Installation: installation/container-installation.md
       - Server Installation: installation/server-installation.md
       - Engine Installation: installation/engine-installation.md
       - Wrapper Installation: installation/wrapper-installation.md
