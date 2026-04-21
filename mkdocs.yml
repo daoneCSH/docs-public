@@ -29,7 +29,7 @@ nav:
       - Engine Installation: installation/engine-installation.md
       - Wrapper Installation: installation/wrapper-installation.md
       - DB UDF Installation: installation/db-udf-installation.md
-      - DB UDF CLI Artifact Download: installation/db-udf-cli-artifact-download.md
+      - DB UDF CLI Download: installation/db-udf-cli-artifact-download.md
   - Deployment:
       - Overview: deployment/index.md
       - Deployment Overview: deployment/deployment-overview.md
