@@ -15,6 +15,8 @@ DADP는 정상적인 연결형 동기화 경로를 우선으로 사용하지만,
 
 Hub CLI의 `wrapper export-config`는 Wrapper가 사용할 설정 스냅샷을 외부 파일로 내보내는 절차다. 직접 동기화가 어려운 환경에서 로컬 반영 파일을 생성할 때 사용한다.
 
+실제 운영 절차는 단순 export에서 끝나지 않는다. 대상 `hubId` 확인, export 수행, Wrapper storage directory 확인, 파일 배치, Wrapper 재기동, 적용 검증까지 하나의 흐름으로 다뤄야 한다. 세부 절차는 [Wrapper Export and Offline Apply](wrapper-export-and-offline-apply.md)를 따른다.
+
 ### CLI 기반 설정 반영
 
 운영자는 Hub CLI를 사용해 인스턴스별 Engine URL, 로그, 통계 수집, schema reload 같은 설정을 표준 절차로 제어할 수 있다. 이 방식은 UI 대신 명령형 운영 경로를 제공한다.
