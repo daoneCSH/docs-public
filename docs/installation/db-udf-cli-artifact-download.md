@@ -1,6 +1,6 @@
-# DB UDF CLI Download
+# Hub CLI Download for DB UDF Operations
 
-이 문서는 외부 운영자가 현재 공개 경로에서 DADP CLI를 내려받아 DB UDF 설치를 수행하는 기준 절차를 설명한다.
+이 문서는 외부 운영자가 현재 공개 경로에서 Hub CLI를 내려받아 DB UDF 설치를 수행하는 기준 절차를 설명한다.
 
 핵심은 두 가지다.
 
@@ -15,12 +15,12 @@
 https://dadp-artifacts.s3.ap-northeast-2.amazonaws.com/cli/v1.3.0/dadp-linux-amd64
 ```
 
-이 문서는 위 경로에서 내려받은 `dadp` CLI를 기준으로 작성한다.
+이 문서는 위 경로에서 내려받은 `dadp` 바이너리를 기준으로 작성한다. 이 바이너리는 별도 `db-udf` 전용 CLI가 아니라, **UDF 기능을 포함한 Hub CLI 배포본**으로 취급한다.
 
 운영 문서 기준에서 중요한 점은 다음과 같다.
 
 - 현재 외부 운영자 경로는 `db-udf` 전용 tarball 기준이 아니다.
-- 현재 외부 운영자 경로는 공개적으로 접근 가능한 단일 CLI 바이너리 기준이다.
+- 현재 외부 운영자 경로는 UDF 기능을 포함한 Hub CLI 단일 바이너리 기준이다.
 - 따라서 외부 운영자 문서는 실제 공개 경로가 검증된 명령 집합만 다뤄야 한다.
 
 ## Download
@@ -41,7 +41,7 @@ chmod +x dadp
 
 ## Validate the Downloaded Binary
 
-실제 설치 전에 먼저 다운로드한 바이너리가 현재 공개 명령 집합을 정상적으로 제공하는지 확인한다.
+실제 설치 전에 먼저 다운로드한 Hub CLI가 현재 공개 명령 집합을 정상적으로 제공하는지 확인한다.
 
 ```bash
 ./dadp --help
@@ -54,14 +54,14 @@ chmod +x dadp
 
 ## Current Public CLI Limits
 
-현재 공개 경로에서 확인된 CLI 기준으로는 다음을 전제하지 않는다.
+현재 공개 경로에서 확인된 Hub CLI 기준으로는 다음을 전제하지 않는다.
 
 - `dadp udf update`
 - `--mysql-deploy-plugin`
 - `--mysql-ssh-user`
 - `--mysql-ssh-password`
 
-즉, 외부 운영자 문서에서는 아직 공개 바이너리에서 재검증되지 않은 `update` 흐름이나 MySQL 원격 플러그인 자동 배포 옵션을 설치 기본선으로 쓰지 않는다.
+즉, 외부 운영자 문서에서는 아직 공개 Hub CLI에서 재검증되지 않은 `update` 흐름이나 MySQL 원격 플러그인 자동 배포 옵션을 설치 기본선으로 쓰지 않는다.
 
 ## Typical Use
 
@@ -81,7 +81,7 @@ chmod +x dadp
 
 ### Direct Install
 
-공개 CLI가 직접 설치를 지원하는 DB 유형에서는 다음과 같이 사용한다.
+현재 공개 Hub CLI가 직접 설치를 지원하는 DB 유형에서는 다음과 같이 사용한다.
 
 ```bash
 ./dadp udf install \
@@ -172,7 +172,7 @@ MySQL 설치 후에는 다음 검증을 함께 수행한다.
 ## What to Avoid
 
 - 외부 운영자에게 아직 공개 검증되지 않은 `db-udf` 전용 S3 경로를 현재 기준이라고 설명하지 않는다.
-- 현재 공개 CLI 기준으로 `dadp udf update`를 기본 설치 절차에 포함하지 않는다.
+- 현재 공개 Hub CLI 기준으로 `dadp udf update`를 기본 설치 절차에 포함하지 않는다.
 - `--mysql-deploy-plugin`, `--mysql-ssh-user`, `--mysql-ssh-password`를 외부 운영자 기본 옵션처럼 문서화하지 않는다.
 - MySQL 설치를 공유 객체 빌드와 `plugin_dir` 반입 없이 one-step 명령으로 설명하지 않는다.
 
