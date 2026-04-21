@@ -1,8 +1,8 @@
 # Troubleshooting
 
-This section organizes DADP troubleshooting by operational boundary so that installation, connectivity, synchronization, runtime, and trust issues can be diagnosed separately.
+이 섹션은 DADP 장애를 운영 경계 기준으로 나누어 진단할 수 있도록 구성한다. 설치, 연결, 동기화, 실행, 신뢰 문제를 분리해서 보는 것이 중요하다.
 
-## Documents
+## 문서
 
 1. [Troubleshooting Overview](troubleshooting-overview.md)
 2. [Installation and Connectivity Issues](installation-and-connectivity.md)

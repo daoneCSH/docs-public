@@ -1,19 +1,19 @@
 # Hub Configuration
 
-Hub configuration exists to keep the DADP control plane stable and predictable in operation.
+Hub 설정의 목적은 DADP 제어면을 안정적이고 예측 가능한 상태로 유지하는 데 있다.
 
-## Primary Configuration Areas
+## 주요 설정 영역
 
-- server port and context path
-- Meta DB connectivity
-- Redis connectivity
-- connected-mode upstream endpoints, when applicable
-- log level
-- integration management settings
-- analytics collection settings
+- 서버 포트와 context path
+- Meta DB 연결
+- Redis 연결
+- 연결형 모드 상위 엔드포인트
+- 로그 수준
+- 연동 인스턴스 관리 설정
+- 분석 및 통계 수집 설정
 
-## Operational Interpretation
+## 운영상 해석
 
-- Hub is the source of truth for policy and operational state, so metadata and dependency connectivity must remain stable.
-- Integration instances should be managed through operational paths rather than by ad hoc runtime mutation.
-- CORS, TLS, and same-origin deployment rules should be evaluated together at the operator entry boundary.
+- Hub는 정책과 운영 상태의 원본이므로 메타데이터 저장소와 의존성 연결이 안정적으로 유지되어야 한다.
+- 연동 인스턴스는 임시 런타임 변경보다 표준 운영 경로를 통해 관리해야 한다.
+- CORS, TLS, same-origin 배포 규칙은 운영자 진입 경계에서 함께 검토해야 한다.

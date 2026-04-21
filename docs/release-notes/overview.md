@@ -1,24 +1,24 @@
 # Release Notes Overview
 
-Public release notes describe customer-visible change, operational impact, and compatibility considerations. Internal work logs, benchmark runs, and temporary investigation notes are not release-note content.
+공개 릴리즈 노트는 고객이 확인해야 하는 변경 사항, 운영 영향, 호환성 고려 사항을 설명한다. 내부 작업 로그, 벤치마크 실행 기록, 임시 조사 메모는 릴리즈 노트 본문으로 취급하지 않는다.
 
-## Public Release Note Principles
+## 공개 릴리즈 노트 원칙
 
-1. describe customer-visible change only
-2. include operationally relevant behavior change
-3. include upgrade or compatibility implications when needed
-4. link to supporting public documentation when applicable
+1. 고객에게 노출되는 변경 사항만 기록한다.
+2. 운영상 의미가 있는 동작 변화만 포함한다.
+3. 필요할 때 업그레이드 또는 호환성 영향을 함께 설명한다.
+4. 공개 문서에 연결할 수 있는 경우 관련 문서 링크를 포함한다.
 
-## Structure
+## 기본 구조
 
-Each release note should typically include:
+각 릴리즈 노트는 보통 다음 항목을 포함한다.
 
-- version
-- release date
-- key changes
-- operational notes
-- compatibility notes
+- 버전
+- 배포 날짜
+- 주요 변경 사항
+- 운영 메모
+- 호환성 메모
 
-## Source Boundary
+## 원천 경계
 
-Module release history and internal work records can inform public release notes, but public release notes should publish only validated customer-facing information.
+모듈별 릴리즈 이력과 내부 작업 기록은 공개 릴리즈 노트 작성에 참고할 수 있지만, 실제 공개 문서에는 검증된 고객 대상 정보만 게시해야 한다.

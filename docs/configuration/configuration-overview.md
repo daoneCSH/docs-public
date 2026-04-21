@@ -1,19 +1,19 @@
 # Configuration Overview
 
-DADP configuration should be managed by module responsibility rather than as one flat list of environment variables.
+DADP 설정은 환경 변수 목록 하나로 평평하게 관리하는 것이 아니라, 모듈 책임과 운영 경계에 따라 나눠서 관리해야 한다.
 
-## Configuration Domains
+## 설정 영역
 
-| Domain | Primary Owner | Description |
-|--------|---------------|-------------|
-| control-plane configuration | Hub | policy, operations, metadata, and connected-mode settings |
-| data-plane configuration | Engine | runtime ports, providers, cache, and execution behavior |
-| integration configuration | Wrapper, DB UDF | Hub URL, Engine URL, and path-specific settings |
-| infrastructure configuration | Proxy, Load Balancer, DNS | operator access TLS, routing, and network boundaries |
+| 영역 | 주된 소유 주체 | 설명 |
+|------|----------------|------|
+| 제어면 설정 | Hub | 정책 운영, 메타데이터, 연결형 모드 관련 설정 |
+| 데이터면 설정 | Engine | 포트, 실행 제공자, 캐시, 런타임 동작 |
+| 연동 설정 | Wrapper, DB UDF | Hub URL, Engine URL, 연동 경계별 실행 설정 |
+| 인프라 설정 | 프록시, 로드 밸런서, DNS | 운영자 접근 TLS, 라우팅, 네트워크 경계 |
 
-## Configuration Rules
+## 설정 원칙
 
-1. End-user HTTPS and service trust configuration should be managed separately.
-2. Hub owns control-plane settings.
-3. Engine owns runtime settings.
-4. Wrapper and DB UDF should keep only the execution settings they require.
+1. 최종 사용자 HTTPS 설정과 서비스 간 신뢰 설정은 분리해서 관리한다.
+2. Hub는 제어면 설정의 원본을 가진다.
+3. Engine은 데이터면 설정을 소유한다.
+4. Wrapper와 DB UDF는 자신에게 필요한 실행 설정만 유지해야 한다.

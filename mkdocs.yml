@@ -32,7 +32,7 @@ nav:
       - Overview: deployment/index.md
       - Deployment Overview: deployment/deployment-overview.md
       - Network and TLS: deployment/network-and-tls.md
-      - Connected and Air-Gapped Modes: deployment/connected-and-air-gapped.md
+      - 연결형과 에어갭 운영 모드: deployment/connected-and-air-gapped.md
   - Operations:
       - Overview: operations/index.md
       - Operations Overview: operations/operations-overview.md

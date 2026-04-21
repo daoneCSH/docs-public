@@ -2,60 +2,60 @@
 
 ## Air-Gapped
 
-An operating mode in which DADP runs without continuous upstream connectivity.
+지속적인 상위 연결 없이 DADP를 운영하는 모드다.
 
 ## Connected
 
-An operating mode in which DADP uses connected trust and validation paths.
+연결형 신뢰 및 검증 경로를 사용하는 운영 모드다.
 
 ## Control Plane
 
-The boundary that manages policy, configuration, and operational metadata.
+정책, 설정, 운영 메타데이터를 관리하는 경계다.
 
 ## Data Plane
 
-The boundary that processes encryption and decryption requests.
+암복호화 요청을 실제로 처리하는 경계다.
 
 ## Hub
 
-The central customer control-plane component of DADP.
+DADP 제어면의 중심 구성 요소다.
 
 ## Engine
 
-The runtime execution component that performs cryptographic processing.
+암복호화 처리를 수행하는 런타임 실행 구성 요소다.
 
 ## Wrapper
 
-The integration path that intervenes in the JDBC boundary.
+JDBC 경계에 개입하는 공식 연동 경로다.
 
 ## Direct API
 
-The integration path where the application explicitly calls the runtime API.
+애플리케이션이 런타임 API를 명시적으로 호출하는 연동 경로다.
 
 ## DB UDF
 
-The integration path that invokes DADP through database-side SQL execution.
+데이터베이스 측 SQL 실행을 통해 DADP를 호출하는 연동 경로다.
 
 ## Policy
 
-The control rule used for encryption, decryption, or masking behavior.
+암복호화 또는 마스킹 동작을 제어하는 규칙이다.
 
 ## Mask Policy
 
-The policy used to control masking behavior.
+마스킹 동작을 제어하는 정책이다.
 
 ## Runtime Cache
 
-The execution-state cache distributed from Hub to Engine.
+Hub에서 Engine으로 분배되는 실행 상태 캐시다.
 
 ## hubId
 
-The identifier used to distinguish a Hub-managed integration instance.
+Hub가 관리하는 연동 인스턴스를 식별하기 위한 값이다.
 
 ## alias
 
-The operator-facing name assigned to an integration instance.
+연동 인스턴스에 부여하는 운영자 관점의 이름이다.
 
 ## datasourceId
 
-The identifier used for schema-mapping scope in integration metadata.
+연동 메타데이터에서 스키마 매핑 범위를 식별하는 값이다.

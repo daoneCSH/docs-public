@@ -1,27 +1,27 @@
-# Connected and Air-Gapped Modes
+# 연결형과 에어갭 운영 모드
 
-DADP deployment mode is defined by operating connectivity, not by infrastructure label alone. Public documentation uses the terms `Connected` and `Air-Gapped` because trust, validation, and recovery behave differently in each mode.
+DADP 배포 모드는 단순한 인프라 위치가 아니라 운영 연결성 기준으로 정의한다. 공개 문서에서 연결형과 에어갭 모드를 구분하는 이유는 신뢰, 검증, 복구 절차가 각 모드에서 다르게 동작하기 때문이다.
 
-## Connected Mode
+## 연결형 모드
 
-In connected mode, Hub operates with upstream-connected control dependencies and trust-distribution paths.
+연결형 모드에서는 Hub가 상위 제어 의존성과 신뢰 배포 경로를 사용할 수 있는 상태로 운영된다.
 
-### Characteristics
+### 특징
 
-- connected control services are reachable
-- validation and trust state are interpreted through connected operating paths
-- bootstrap and steady-state channels are separated
+- 연결형 제어 서비스에 도달할 수 있다.
+- 검증과 신뢰 상태를 연결형 운영 경로 기준으로 해석한다.
+- 부트스트랩 경로와 정상 운영 경로를 구분해서 본다.
 
-## Air-Gapped Mode
+## 에어갭 모드
 
-In air-gapped mode, Hub operates without continuous upstream connectivity.
+에어갭 모드에서는 Hub가 지속적인 상위 연결 없이 배포 경계 내부에서 운영된다.
 
-### Characteristics
+### 특징
 
-- trust assets and validation material are handled inside the deployment boundary
-- local operating state is interpreted within the deployment itself
-- recovery follows deployment-local procedures
+- 신뢰 자산과 검증 자료를 배포 경계 내부에서 관리한다.
+- 로컬 운영 상태를 외부 연결 없이 배포 내부 기준으로 해석한다.
+- 복구는 배포 내부 절차를 따른다.
 
-## Operational Interpretation
+## 운영상 해석
 
-The difference between connected and air-gapped mode is not just location. It changes how trust, validation, and recovery state are established and interpreted.
+연결형과 에어갭의 차이는 단순한 위치 차이가 아니다. 어떤 채널에서 신뢰가 성립하는지, 검증 상태를 어떻게 해석하는지, 장애 시 어떤 복구 절차를 따라야 하는지를 함께 바꾼다.
