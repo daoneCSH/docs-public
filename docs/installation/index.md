@@ -10,3 +10,4 @@
 4. [Engine Installation](engine-installation.md)
 5. [Wrapper Installation](wrapper-installation.md)
 6. [DB UDF Installation](db-udf-installation.md)
+7. [DB UDF CLI Artifact Download](db-udf-cli-artifact-download.md)
