@@ -17,6 +17,18 @@
 
 이 문서는 정책의 원본을 바꾸는 절차가 아니라, Hub 원본을 Wrapper 로컬 스냅샷으로 반영하는 절차를 다룬다.
 
+## Why This Procedure Matters
+
+이 절차는 자동 동기화를 대체하는 기본 경로가 아니라, 더 보수적인 운영을 원할 때 사용할 수 있는 안전 장치다. Wrapper는 기본적으로 Hub와 자동 동기화되지만, 기동 직후 첫 요청 타이밍이 민감한 환경에서는 이 절차를 통해 정책과 endpoint 정보를 먼저 반영할 수 있다.
+
+운영 기준에서는 다음을 명확히 구분한다.
+
+- 애플리케이션 프로세스가 떠 있는 상태
+- Wrapper storage가 준비된 상태
+- 보호 정책이 실제로 적용 가능한 상태
+
+세 상태는 서로 같지 않다.
+
 ## What the Export Contains
 
 Hub의 `export-config`는 Wrapper가 오프라인 또는 제한 연결 상태에서 동작하는 데 필요한 핵심 설정을 담는다.
@@ -162,6 +174,8 @@ cp wrapper-config.json /path/to/storage/<instanceId>/exported-config.json
 6. 정책 적용 결과 검증
 
 이 절차를 사용하면 "Hub를 건드렸는가"와 "Wrapper가 실제로 반영했는가"를 분리해 추적할 수 있다.
+
+특히 Wrapper 재기동 직후 사용자 요청이 빠르게 들어오는 환경에서는, 이 절차를 통해 storage를 먼저 채운 뒤 트래픽을 여는 방식을 고려할 수 있다.
 
 ## Operational Notes
 
