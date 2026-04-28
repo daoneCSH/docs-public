@@ -8,8 +8,8 @@ DADP는 운영자 접근 트래픽, 제어면 동기화 트래픽, 런타임 실
 |--------|--------|------|------|
 | Browser | Hub | HTTP(S) | 운영 UI와 제어면 API |
 | Hub | Engine | REST | 캐시 동기화와 상태 확인 |
-| Wrapper | Hub | REST | bootstrap, 등록, 설정 동기화 |
-| Wrapper | Engine | REST | 런타임 암복호화 요청 |
+| Wrapper | Hub | REST | bootstrap, 등록, 설정과 메타데이터 동기화 |
+| Wrapper | Engine | REST | remote mode 또는 fallback 경로의 런타임 암복호화 요청 |
 | Direct API | Engine | REST | 애플리케이션 명시적 실행 요청 |
 | DB UDF | Engine | HTTP 또는 DB 브리지 | 데이터베이스 내부 실행 |
 | Engine | Aggregator | REST | 실행 통계 전달 |
@@ -21,7 +21,15 @@ DADP는 운영자 접근 트래픽, 제어면 동기화 트래픽, 런타임 실
 
 1. Wrapper가 Hub에서 필요한 설정과 매핑 정보를 가져온다.
 2. Wrapper가 로컬 스냅샷 또는 export-config 기반 설정을 유지한다.
-3. 실제 암복호화는 Engine으로 요청한다.
+3. 기본 모드에서는 실제 암복호화를 Engine으로 요청한다.
+4. local crypto가 활성화된 경우에는 지원된 경로를 Wrapper가 직접 실행하고, 나머지는 Engine으로 fallback한다.
+
+### Wrapper local crypto
+
+1. Wrapper가 Hub에서 정책, endpoint, 실행 식별 정보를 동기화한다.
+2. Wrapper가 shared crypto core 기준으로 local 실행 가능 경로를 판정한다.
+3. 지원된 provider와 algorithm 조합은 Wrapper가 애플리케이션 호스트에서 직접 실행한다.
+4. 지원되지 않는 조합, 일부 검색/보조 기능, 또는 local 판단 실패 경로는 Engine으로 전환한다.
 
 ### Direct API
 
@@ -40,6 +48,8 @@ DADP는 운영자 접근 트래픽, 제어면 동기화 트래픽, 런타임 실
 - 브라우저는 Engine을 직접 운영자 진입점으로 사용하지 않는다.
 - 모든 실행 요청이 Hub를 매번 경유하는 것은 아니다.
 - Aggregator는 실행 제어 경계가 아니라 관측 경계다.
+- Wrapper local crypto가 활성화되어도 제어면 원본은 Hub에 유지된다.
+- local crypto는 Engine을 대체하는 전체 실행면이 아니라, 지원 범위를 가진 선택적 edge 실행 경로다.
 
 ## 신뢰 및 복구 채널
 
@@ -49,3 +59,5 @@ Connected 환경에서는 bootstrap과 steady-state를 분리해서 해석해야
 - steady-state 채널은 정상 운영 통신에 사용된다.
 
 복구 채널이 살아 있다는 사실만으로 정상 운영 채널까지 복구됐다고 판단하면 안 된다.
+
+또한 Wrapper 경로에서는 "Hub와의 동기화가 살아 있음"과 "실제 암복호화가 Engine 원격 실행으로 정상 수행됨"과 "local crypto 경로가 활성화됨"을 같은 상태로 취급하면 안 된다.
