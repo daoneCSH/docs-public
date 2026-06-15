@@ -21,6 +21,8 @@ nav:
       - Overview: getting-started/index.md
       - Platform Overview: getting-started/platform-overview.md
       - Core Concepts: getting-started/core-concepts.md
+  - Manuals:
+      - Official Manual: manuals/index.md
   - Installation:
       - Overview: installation/index.md
       - System Requirements: installation/system-requirements.md
