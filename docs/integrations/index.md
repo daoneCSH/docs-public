@@ -8,3 +8,4 @@
 2. [Wrapper Integration](wrapper-integration.md)
 3. [Direct API Integration](direct-api-integration.md)
 4. [DB UDF Integration](db-udf-integration.md)
+5. [DB UDF Tutorial](db-udf-tutorial.md)

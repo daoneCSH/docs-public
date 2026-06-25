@@ -60,6 +60,7 @@ nav:
       - Wrapper Integration: integrations/wrapper-integration.md
       - Direct API Integration: integrations/direct-api-integration.md
       - DB UDF Integration: integrations/db-udf-integration.md
+      - DB UDF Tutorial: integrations/db-udf-tutorial.md
   - Modules:
       - Overview: modules/index.md
       - Module Overview: modules/module-overview.md
